@@ -7,11 +7,12 @@ searchbutton,addEventListener("click",function(){
      weatherchannel(city)
 })
 
+var API = "8095293d15a37b773341543e6e448f85"
 
 function getCurrentWeatherForcast(city){
      
     var queryURL = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}'
-    
+
     console.log(queryURL)
     fetch(queryURL)
     .then(response=> {
