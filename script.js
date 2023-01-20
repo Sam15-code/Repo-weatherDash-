@@ -5,9 +5,24 @@ searchbutton.addEventListener("click",function(){
      console.log("city",city)
      getCurrentWeatherForcast(city)
      getFiveDayWeatherForcast(city)
-  //  // weatherChannel(city)
+
+     var storedCity = JSON.parse(localStorage.getItem("weatherChannel")) || [] // \\ or operator
+    storedCity.push(city)
+    localStorage.setItem("weatherChannel",JSON.stringify(storedCity))
+     weatherHistory()
+
 })
 
+function weatherHistory(){
+    var storedCity = JSON.parse(localStorage.getItem("weatherChannel")) || [] // \\ or operator
+    var buttonCode = ""
+    for(let i = 0; i<storedCity.length; i++){
+        buttonCode += ` <button class="btn btn-secondary" type="button">${storedCity[i]}</button>`
+    } 
+    document.getElementById("history").innerHTML=buttonCode  
+}
+
+weatherHistory()
 var API = "8095293d15a37b773341543e6e448f85"
 
 function getCurrentWeatherForcast(city){
