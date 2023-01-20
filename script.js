@@ -17,9 +17,11 @@ function weatherHistory(){
     var storedCity = JSON.parse(localStorage.getItem("weatherChannel")) || [] // \\ or operator
     var buttonCode = ""
     for(let i = 0; i<storedCity.length; i++){
-        buttonCode += ` <button class="btn btn-secondary" type="button">${storedCity[i]}</button>`
+        buttonCode += ` <button class="btn btn-secondary searched" type="button">${storedCity[i]}</button>`
     } 
     document.getElementById("history").innerHTML=buttonCode  
+    var searchedList = document.querySelectorAll(".searched")
+    searchedList.forEach(element => element.addEventListener("click", buttonClick))
 }
 
 weatherHistory()
@@ -82,4 +84,12 @@ function getFiveDayWeatherForcast(city){
     }
     document.getElementById("fiveDay").innerHTML = cardsFiveDay
     })
+}
+
+
+function buttonClick (event){
+    console.log(event.target.textContent, this.textContent)
+    getCurrentWeatherForcast(event.target.textContent)
+getFiveDayWeatherForcast(event.target.textContent)
+
 }
